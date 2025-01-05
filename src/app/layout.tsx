@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import alipic from "../../public/alipic.png";
+import Image from "next/image";
 
 import "./globals.css";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,7 +17,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <header>
+          <nav>
+            <div className="logo-container">
+              <Image src={alipic} alt="CodeWithAli" className="logo" />
+            </div>
+            <div className="nav-links">
+              <a href="/">Home</a>
+              <a href="/about">About</a>
+              <a href="/courses">Courses</a>
+              <a href="/#contact">Contact</a>
+              <a href="/#reviews">Reviews</a>
+              <a href="/#faq">FAQ</a>
+            </div>
+          </nav>
+        </header>
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
