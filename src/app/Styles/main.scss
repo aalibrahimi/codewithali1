@@ -1,0 +1,138 @@
+// styles/main.scss
+
+// Variables
+$primary-color: #ff6f61;
+$secondary-color: #d7263d;
+$accent-color: #ff1500;
+$dark-bg: #1a1a1a;
+$light-bg: #ffffff;
+
+// Mixins
+@mixin glassmorphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+@mixin card-hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+// Custom Loader
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 3px solid $primary-color;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: loader 1s linear infinite;
+  margin: auto;
+}
+
+// Glassmorphism Cards
+.glass-card {
+  @include glassmorphism;
+  padding: 2rem;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    @include card-hover;
+  }
+}
+
+// Dark Mode Styles
+.dark {
+  .glass-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Testimonials Carousel
+.testimonial-container {
+  overflow: hidden;
+  position: relative;
+  
+  .testimonial-slide {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+}
+
+// Floating Navbar
+.floating-nav {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  border-radius: 999px;
+  @include glassmorphism;
+  padding: 0.5rem 1.5rem;
+  
+  &.scrolled {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .floating-nav {
+    width: 90%;
+  }
+  
+  .glass-card {
+    margin: 1rem;
+  }
+}
+
+// Custom Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  
+  &-track {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  &-thumb {
+    background: $primary-color;
+    border-radius: 4px;
+    
+    &:hover {
+      background: $secondary-color;
+    }
+  }
+}
